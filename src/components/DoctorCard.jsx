@@ -11,7 +11,7 @@ const DoctorCard = ({ doctor }) => {
       <h2>{doctor.name || 'N/A'}</h2>
 
       <p><strong>Specialties:</strong> {doctor.specialties.join(', ')}</p>
-      <p><strong>Experience:</strong> {`${doctor.experience}`}</p>
+      <p><strong>Experience:</strong> {doctor.experience} years</p>
       <p><strong>Fee:</strong> {`${doctor.fees}`}</p>
 
     </div>

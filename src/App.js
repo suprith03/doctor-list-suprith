@@ -14,18 +14,18 @@ function App() {
       .then((data) => {
         const updatedData = data.map((doc) => ({
           ...doc,
-          experience: doc.experience !== undefined ? doc.experience : 0,
-          fee: doc.fees !== undefined ? doc.fees : 0,
-          rating: doc.rating !== undefined ? doc.rating : 0,
+          experience: typeof doc.experience === 'number' ? doc.experience : parseInt(doc.experience) || 0,
+          fee: typeof doc.fees === 'number' ? doc.fees : parseInt(doc.fees) || 0,
           specialties: doc.specialities ? doc.specialities.map(s => s.name) : ['General Medicine'],
           consultationModes: doc.consultationModes || ['In-person'],
         }));
-
+  
         setDoctors(updatedData);
         console.log(updatedData);
       })
       .catch((err) => console.error('Error fetching doctors:', err));
   }, []);
+  
 
   const handleSearch = (e) => setSearchQuery(e.target.value);
 
@@ -50,8 +50,7 @@ function App() {
     )
     .sort((a, b) => {
       if (sortOption === 'experience') return b.experience - a.experience;
-      if (sortOption === 'fee') return a.fee - b.fee;
-      if (sortOption === 'rating') return b.rating - a.rating;
+      if (sortOption === 'fees') return a.fee - b.fee;
       return 0;
     });
 
