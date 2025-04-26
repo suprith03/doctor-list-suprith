@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DoctorList from './components/DoctorList';
-
 import './App.css';
+
 function App() {
   const [doctors, setDoctors] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -14,14 +14,15 @@ function App() {
       .then((data) => {
         const updatedData = data.map((doc) => ({
           ...doc,
-          experience: doc.experience,
-          fee: doc.fees,
-          spec: doc.specialities[0].name
-
+          experience: doc.experience !== undefined ? doc.experience : 0,
+          fee: doc.fees !== undefined ? doc.fees : 0,
+          rating: doc.rating !== undefined ? doc.rating : 0,
+          specialties: doc.specialities ? doc.specialities.map(s => s.name) : ['General Medicine'],
+          consultationModes: doc.consultationModes || ['In-person'],
         }));
 
         setDoctors(updatedData);
-        console.log(data);
+        console.log(updatedData);
       })
       .catch((err) => console.error('Error fetching doctors:', err));
   }, []);
@@ -97,7 +98,6 @@ function App() {
           <option value="">Sort By</option>
           <option value="experience">Experience (High to Low)</option>
           <option value="fee">Fee (Low to High)</option>
-          <option value="rating">Rating (High to Low)</option>
         </select>
       </div>
 

@@ -37,7 +37,6 @@ const FilterPanel = ({
         <option value="">Sort By</option>
         <option value="experience">Experience (High to Low)</option>
         <option value="fee">Fee (Low to High)</option>
-        <option value="rating">Rating (High to Low)</option>
       </select>
     </div>
   );

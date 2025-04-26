@@ -10,7 +10,7 @@ const DoctorCard = ({ doctor }) => {
       <img src={doctor.image || doctorImage} alt="Doctor" className="doctor-image" />
       <h2>{doctor.name || 'N/A'}</h2>
 
-      <p><strong>Specialties:</strong> {doctor.spec}</p>
+      <p><strong>Specialties:</strong> {doctor.specialties.join(', ')}</p>
       <p><strong>Experience:</strong> {`${doctor.experience}`}</p>
       <p><strong>Fee:</strong> {`${doctor.fees}`}</p>
 
